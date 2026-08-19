@@ -1,0 +1,32 @@
+Code:
+import sympy as sp
+# Define variables
+x, y, lam = sp.symbols('x y lam')
+# Objective function f = x * y
+# Constraint function g = x + y - 10
+# Lagrangian function L = f + lam * g
+print("Lagrangian Function:") print(L)
+# Partial derivatives eq1 = sp.diff(L, x) eq2 = sp.diff(L, y) eq3 = sp.diff(L, lam)
+print("\nPartial Derivatives:") print("dL/dx =", eq1) print("dL/dy =", eq2) print("dL/dλ =", eq3)
+# Solve the system of equations
+solution = sp.solve((eq1, eq2, eq3), (x, y, lam), dict=True)
+print("\nOptimal Solution:") print(solution)
+# Extract values
+x_val = solution[0][x] y_val = solution[0][y] lam_val = solution[0][lam]
+print("\nOptimal Values:") print("x =", x_val) print("y =", y_val) print("λ =", lam_val)
+# Calculate objective function value optimal_value = f.subs({x: x_val, y: y_val})
+print("\nMaximum Value of Objective Function:") print(optimal_value)
+
+
+Output:
+Lagrangian Function:
+lam*(x + y - 10) + x*y
+Partial Derivatives:
+dL/dx = lam + y dL/dy = lam + x dL/dλ = x + y - 10
+Optimal Solution:
+[{lam: -5, x: 5, y: 5}]
+Optimal Values:
+x = 5
+y = 5
+λ = -5
+Maximum Value of Objective Function: 25
